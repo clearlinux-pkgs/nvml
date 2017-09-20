@@ -4,14 +4,13 @@
 #
 Name     : nvml
 Version  : 57209434841485121468
-Release  : 2
+Release  : 3
 URL      : https://github.com/pmem/nvml/archive/c572fe0943a4f8edb41eb4c85121c4eeed68fffc.tar.gz
 Source0  : https://github.com/pmem/nvml/archive/c572fe0943a4f8edb41eb4c85121c4eeed68fffc.tar.gz
 Summary  : libvmmalloc library from NVML project
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause
 Requires: nvml-bin
-Requires: nvml-config
 Requires: nvml-lib
 Requires: nvml-data
 Requires: nvml-doc
@@ -25,18 +24,9 @@ The scripts found here are used during library development.
 Summary: bin components for the nvml package.
 Group: Binaries
 Requires: nvml-data
-Requires: nvml-config
 
 %description bin
 bin components for the nvml package.
-
-
-%package config
-Summary: config components for the nvml package.
-Group: Default
-
-%description config
-config components for the nvml package.
 
 
 %package data
@@ -71,7 +61,6 @@ doc components for the nvml package.
 Summary: lib components for the nvml package.
 Group: Libraries
 Requires: nvml-data
-Requires: nvml-config
 
 %description lib
 lib components for the nvml package.
@@ -85,15 +74,18 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505686482
+export SOURCE_DATE_EPOCH=1505919374
 export CFLAGS="-O3 -g -fopt-info-vec "
 unset LDFLAGS
 make V=1
 
 %install
-export SOURCE_DATE_EPOCH=1505686482
+export SOURCE_DATE_EPOCH=1505919374
 rm -rf %{buildroot}
 %make_install prefix=/usr
+## make_install_append content
+rm -rf %{buildroot}/usr/etc
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -101,10 +93,6 @@ rm -rf %{buildroot}
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/pmempool
-
-%files config
-%defattr(-,root,root,-)
-%config /usr/etc/bash_completion.d/pmempool.sh
 
 %files data
 %defattr(-,root,root,-)
