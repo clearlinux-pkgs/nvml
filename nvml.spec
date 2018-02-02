@@ -4,7 +4,7 @@
 #
 Name     : nvml
 Version  : 57209434841485121468
-Release  : 3
+Release  : 4
 URL      : https://github.com/pmem/nvml/archive/c572fe0943a4f8edb41eb4c85121c4eeed68fffc.tar.gz
 Source0  : https://github.com/pmem/nvml/archive/c572fe0943a4f8edb41eb4c85121c4eeed68fffc.tar.gz
 Summary  : libvmmalloc library from NVML project
